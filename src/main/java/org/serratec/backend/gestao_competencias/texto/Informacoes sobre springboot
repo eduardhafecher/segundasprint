@@ -1,0 +1,28 @@
+Pastas - Controller
+        - Recebe as informacoes referente aos requisitos HTTP
+        - Os ENDPOINTS "api/projects"
+Pastas - Services
+        - Onde esta armazenado as logicas de negocio, calculos, as validacoes,
+        chamadas e toda e qualquer outra norma de negocio.
+Pastas - Repository
+        - Interface que e responsavel pela conexao com o banco de dados USANDO o JPA / Hibernate
+Pastas - Entity
+        - Representa as tabelas que serao feitas no banco de dados
+Pastas - DTOS
+        - Sao os objetos responsaveis pelas entradas e saidas de dados via API,
+        sao separados por entidades.
+Pastas - Configs
+        - Arquivos que sao usados para armazenar as segurancas,
+        CORS, SWAGGERS e etc
+Pastas - Exception
+        - Local para tratamento de erros customizados
+           (EX: 404 / 200 / 500)
+Pastas - Mapper
+        - Converte e conexao entre os
+        DTOS - Entitys, evita a repeticao de codigo
+Pastas - Resources
+        - Application.properties - Arquivo principal de configuracao de ambiente
+        - Application-dev.properties - Arquivo de configuracoes especificas
+        para o ambiente de desenvolvimento utilizando o banco H2-CONSOLE.
+        - Application-prod.properties - Arquivo de configuracoes especificas
+        para o ambiennte de desenvolvimento utilizando o POSTGRE.

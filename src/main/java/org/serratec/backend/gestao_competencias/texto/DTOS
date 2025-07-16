@@ -1,0 +1,19 @@
+Request DTO  - Usado para a entrada de dados no sistema
+    -Post: Enviar ou criar
+    -Put: Alterar complemetamente
+    -Patch: Alterar parcialmente
+
+Fazem as seguintes acoes:
+    - Validacao de entrada com as annotations
+        - @NotBlank
+        - @Email
+        - @Valid
+    - Seguranca, pois controlam o que cada campo irar enviar.
+    - Desacoplamento, protege a estrutura interna do dados.
+    - Transformação, conversao dos dados externos para internos
+
+Response DTO - Usados para a saida de dados no sistema
+    -Get: Buscar
+    -Post: retornar um objeto criado
+    -Put: retornar um objeto atualizado
+    -Delete: exclusao.

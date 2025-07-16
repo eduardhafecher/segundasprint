@@ -1,0 +1,2 @@
+- Adicionar ao maven > SpringDoc OpenApi
+    - Adicionei o swagger documentation na API, POM também esta adicionado a extensao SpringDOC OpenApi

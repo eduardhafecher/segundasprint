@@ -1,0 +1,40 @@
+Alguns jsons uteis.
+    >COLABORADORES
+        -GET-COLABORADORES
+        -GET-COLABORADORES-ID
+        -DEL-COLABORADORES
+        http://localhost:8080/colaboradores/5
+        -PUT-COLABORADORES
+        http://localhost:8080/colaboradores/3
+        {
+          "nome": "Ana Carolina",
+          "cpf": "01200909812",
+          "ocupacao": "Tecnica em Redes",
+          "email": "alexandre123@email.com",
+          "password": ""
+        }
+        -POST-COLABORADORES
+        {
+          "nome": "Alexandre",
+          "cpf": "15050050050",
+          "ocupacao": "Devops - Redes",
+          "email": "alex123@email.com",
+          "password": "abc123"
+        }
+
+    >GESTORES
+    >COMPETENCIAS
+            -GET-COMPETENCIAS
+            http://localhost:8080/competencias
+            -POST-COMPETENCIAS
+            http://localhost:8080/competencias/
+            {
+                "nome": "DESENVOLVIMENTO DE SOFTWARE",
+                "tipo": "ESTUDO E DESENVOLVIMENTO ADS",
+                "descricao": "ADS",
+                "areaRelacionada": "DATA_SCIENCE"
+              }
+
+
+
+

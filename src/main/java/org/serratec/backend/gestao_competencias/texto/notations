@@ -1,0 +1,111 @@
+Classe funcionario
+
+package org.serratec.backend.gestao_competencias.entity;
+public class Funcionario {
+
+    private Long id;
+    private String nome;
+    private String cpf;
+    private String email;
+    private String senha;
+    private String ocupacao;
+    private String foto;
+    private String formacao;
+    private String certificacao;
+}
+
+
+ if(gestor != null) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Gestor informado ja esta cadastrado");
+        }
+
+        return ResponseEntity.status(HttpStatus.CREATED).body("Gestor cadastrado com sucesso");
+    }
+
+
+    @Service
+    public class ColaboradorService {
+        @Autowired
+        private ColaboradorRepository colaboradorRepository;
+
+        public List<ColaboradorDTO> listarTodos() {
+            return colaboradorRepository.findAll().stream().map(this::toDTO).toList();
+        }
+
+        public ColaboradorDTO listarPorId(Long id) {
+            Colaborador colaborador = colaboradorRepository.findById(id).orElseThrow(()
+                    -> new ColaboradorException("Colaborador Nao encontrado!"));
+            return toDTO(colaborador);
+        }
+
+        public ColaboradorDTO inserir(ColaboradorDTO colaboradorDTO) {
+            return toDTO(colaboradorRepository.save(toEntity(dto)));
+        }
+
+        public ColaboradorDTO atualizar(Long id, ColaboradorDTO dto) {
+            Colaborador colaborador = colaboradorRepository.findById(id).orElseThrow(()
+                    -> new ColaboradorException("Colaborador não encontrado."));
+            colaborador.setNome(colaborador.getNome());
+            colaborador.setEmail(colaborador.getEmail());
+            colaborador.setPassword(colaborador.getPassword());
+            return toDTO(colaboradorRepository.save(colaborador));
+        }
+
+        public void excluir(Long id) {
+            Colaborador colaborador = colaboradorRepository.findById(id).orElseThrow(()
+                    -> new ColaboradorException("Colaborador nao Encontrado"));
+                    colaboradorRepository.delete(colaborador);
+        }
+
+        private Colaborador toEntity(ColaboradorDTO dto) {
+            Colaborador colaborador = new Colaborador();
+            colaborador.setNome(colaborador.getNome());
+            colaborador.setPassword(colaborador.getPassword());
+            colaborador.setEmail(colaborador.getEmail());
+            colaborador.setOcupacao(colaborador.getOcupacao());
+            if (dto.getNome() != null) {
+                Colaborador c = colaboradorRepository.findById(colaborador.getId()).orElseThrow(()
+                        -> new ColaboradorException("Colaborador Nao encontrado!"));
+            }
+            return ator;
+        }
+    }
+
+
+
+
+package org.serratec.backend.gestao_competencias.config;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
+import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+
+**
+ * classe de configuracao
+ * e autentificacao
+ */
+
+
+@EnableWebSecurity
+@Configuration
+public class SecurityConfig {
+}
+
+
+//    private Colaborador toDTO(ColaboradorDTO dto) {
+//        Colaborador colaborador = new Colaborador();
+//        colaborador.setNome(colaborador.getNome());
+//        colaborador.setCpf(colaborador.getCpf());
+//        colaborador.setEmail(colaborador.getEmail());
+//        colaborador.setOcupacao(colaborador.getOcupacao());
+//        if (colaborador.getCpf() != null) {
+//           Colaborador col= colaboradorRepository.findById(colaborador.getId()).orElseThrow(() -> new ColaboradorException("Colaborador nao encontrado"));
+//        }
+//        return colaborador;
+//    }
