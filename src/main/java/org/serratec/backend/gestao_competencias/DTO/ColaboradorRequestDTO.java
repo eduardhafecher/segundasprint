@@ -23,7 +23,7 @@ public class ColaboradorRequestDTO {
     private String nome;
 
     @NotBlank
-    @CPF(message = "O campo CPF deve ser VÁLIDO.")
+//    @CPF(message = "O campo CPF deve ser VÁLIDO.")
     private String cpf;
 
     @NotBlank

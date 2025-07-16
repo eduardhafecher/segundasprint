@@ -2,6 +2,7 @@ package org.serratec.backend.gestao_competencias.controller;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.serratec.backend.gestao_competencias.DTO.ColaboradorSimplesDTO;
 import org.serratec.backend.gestao_competencias.DTO.ProjetoRequestDTO;
 import org.serratec.backend.gestao_competencias.DTO.ProjetoResponseDTO;
 import org.serratec.backend.gestao_competencias.entity.Projeto;
@@ -59,6 +60,17 @@ public class ProjetoController {
         return ResponseEntity.noContent().build();
     }
 
+    @GetMapping("/sugerir-colaboradores")
+    public ResponseEntity<List<ColaboradorSimplesDTO>> sugerirColaboradores(
+            @RequestParam("hardSkills") List<Long> hardSkillIds) {
+        return ResponseEntity.ok(projetosService.sugerirColaboradoresPorHardSkills(hardSkillIds));
+    }
 
+
+    @PutMapping("/{id}/concluir")
+    public ResponseEntity<ProjetoResponseDTO> concluirProjeto(@PathVariable Long id) {
+        ProjetoResponseDTO atualizado = projetosService.concluirProjeto(id);
+        return ResponseEntity.ok(atualizado);
+    }
 
 }

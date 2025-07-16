@@ -1,16 +1,15 @@
 package org.serratec.backend.gestao_competencias.service;
 
-import org.serratec.backend.gestao_competencias.DTO.ProjetoRequestDTO;
-import org.serratec.backend.gestao_competencias.DTO.ProjetoResponseDTO;
-import org.serratec.backend.gestao_competencias.DTO.ProjetoTopicoRequestDTO;
-import org.serratec.backend.gestao_competencias.DTO.ProjetoTopicoResponseDTO;
+import org.serratec.backend.gestao_competencias.DTO.*;
 import org.serratec.backend.gestao_competencias.entity.*;
+import org.serratec.backend.gestao_competencias.enums.StatusProjeto;
 import org.serratec.backend.gestao_competencias.exception.NotFoundException;
 import org.serratec.backend.gestao_competencias.repository.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -36,6 +35,7 @@ public class ProjetoService {
         Projeto projeto = new Projeto();
         projeto.setNome(dto.getNome());
         projeto.setDescricao(dto.getDescricao());
+        projeto.setStatus(dto.getStatus() != null ? dto.getStatus() : StatusProjeto.EM_PLANEJAMENTO);
 
         projeto = projetoRepository.save(projeto);
 
@@ -102,6 +102,9 @@ public class ProjetoService {
         dto.setId(projeto.getId());
         dto.setNome(projeto.getNome());
         dto.setDescricao(projeto.getDescricao());
+        dto.setDataInicio(projeto.getDataInicio());
+        dto.setDataConclusao(projeto.getDataConclusao());
+        dto.setStatus(projeto.getStatus());
 
         List<ProjetoTopicoResponseDTO> requisitosDTO = new ArrayList<>();
         if (projeto.getRequisitos() != null) {
@@ -137,4 +140,31 @@ public class ProjetoService {
         }
         return dtos;
     }
+
+
+    public List<ColaboradorSimplesDTO> sugerirColaboradoresPorHardSkills(List<Long> hardSkillIds) {
+        List<Colaborador> todos = colaboradorRepository.findAll();
+
+        return todos.stream()
+                .filter(colaborador -> {
+                    Set<Long> hsIdsColaborador = colaborador.getHardSkillsAssociadas().stream()
+                            .map(ColaboradorHardSkill::getHardSkill)
+                            .map(HardSkill::getId)
+                            .collect(Collectors.toSet());
+                    return hsIdsColaborador.containsAll(hardSkillIds);
+                })
+                .map(c -> new ColaboradorSimplesDTO(c.getId(), c.getNome()))
+                .collect(Collectors.toList());
+        }
+
+        public ProjetoResponseDTO concluirProjeto(Long id) {
+        Projeto projeto = projetoRepository.findById(id)
+                .orElseThrow(() -> new  NotFoundException("Projeto não encontrado com ID: " + id));
+
+        projeto.setStatus(StatusProjeto.CONCLUIDO);
+        projeto.setDataConclusao(LocalDate.now());
+
+        projeto = projetoRepository.save(projeto);
+        return toResponseDTO(projeto);
+        }
 }

@@ -5,7 +5,9 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.serratec.backend.gestao_competencias.enums.StatusProjeto;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @NoArgsConstructor
@@ -23,7 +25,17 @@ public class Projeto {
     private String nome;
     private String descricao;
 
-    private Double periodo;
+//    private Double periodo;
+
+    @Column(name = "data_inicio", nullable = false)
+    private LocalDate dataInicio;
+
+    @Column(name = "data_conclusao")
+    private LocalDate dataConclusao;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private StatusProjeto status;
 
     @ManyToMany
     @JoinTable(name="colaborador_projeto", joinColumns =
