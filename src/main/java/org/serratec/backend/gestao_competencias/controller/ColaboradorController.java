@@ -42,7 +42,7 @@ public class ColaboradorController {
     @Operation(summary = "Realiza a INSERCAO de um colaborador" , method = "POST")
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<ColaboradorResponseDTO> inserir (@Valid @RequestBody ColaboradorRequestDTO dto) {
+    public ResponseEntity<ColaboradorResponseDTO> inserir ( @RequestBody ColaboradorRequestDTO dto) {
         return ResponseEntity.ok(service.inserir(dto));
     }
 
