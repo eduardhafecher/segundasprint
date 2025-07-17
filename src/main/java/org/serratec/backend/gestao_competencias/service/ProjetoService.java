@@ -37,6 +37,8 @@ public class ProjetoService {
         projeto.setDescricao(dto.getDescricao());
         projeto.setStatus(dto.getStatus() != null ? dto.getStatus() : StatusProjeto.EM_PLANEJAMENTO);
 
+        projeto.setDataInicio(dto.getDataInicio() != null ? dto.getDataInicio() : LocalDate.now());
+
         projeto = projetoRepository.save(projeto);
 
         List<ProjetoTopico> requisitos = new ArrayList<>();

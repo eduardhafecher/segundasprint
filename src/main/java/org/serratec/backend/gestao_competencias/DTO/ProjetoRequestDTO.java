@@ -20,7 +20,6 @@ public class ProjetoRequestDTO {
     private List<ProjetoTopicoRequestDTO> topicos;
 
 
-
     //public ProjetoRequestDTO(Projeto projeto) {
     // }
 }
