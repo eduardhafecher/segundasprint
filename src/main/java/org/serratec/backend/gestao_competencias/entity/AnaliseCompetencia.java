@@ -31,9 +31,6 @@ public class AnaliseCompetencia {
         @Column(nullable = false)
         private Integer quantidadeAtual;
 
-//        @Enumerated(EnumType.STRING)
-//        private NivelCompetencia nivelCompetenciaDesejado;
-
         @Enumerated(EnumType.STRING)
         private StatusAlinhamento statusAlinhamento;
 }

@@ -9,5 +9,4 @@ public class AnaliseCompetenciaRequestDTO {
 
     private Long hardSkillId;
     private Integer quantidadeDesejada;
-//    private NivelCompetencia nivelCompetenciaDesejado;
 }

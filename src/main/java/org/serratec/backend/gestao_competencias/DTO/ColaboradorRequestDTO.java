@@ -35,7 +35,7 @@ public class ColaboradorRequestDTO {
 
     private String password;
     
-    private List<HardSkillRequestDTO> hardSkills;
+//    private List<HardSkillRequestDTO> hardSkills;
 
 
 

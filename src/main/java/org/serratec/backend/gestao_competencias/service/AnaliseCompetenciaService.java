@@ -31,7 +31,7 @@ public class AnaliseCompetenciaService {
                 .orElseThrow(() -> new NotFoundException("Hard Skill não encontrada"));
 
         // contgm quantos colaboradores possuem essa hardSkill
-        int quantidadeAtual = colaboradorHardSkillRepository.contagemPorHrdSkillId(dto.getHardSkillId());
+        int quantidadeAtual = colaboradorHardSkillRepository.countByHardSkillId(dto.getHardSkillId());
 
         StatusAlinhamento status = calcularStatus(dto.getQuantidadeDesejada(), quantidadeAtual);
 
@@ -39,7 +39,6 @@ public class AnaliseCompetenciaService {
         analise.setHardSkill(hardSkill);
         analise.setQuantidadeColaboradoresDesejada(dto.getQuantidadeDesejada());
         analise.setQuantidadeAtual(quantidadeAtual);
-//        analise.setNivelCompetenciaDesejado(dto.getNivelCompetenciaDesejado());
         analise.setStatusAlinhamento(status);
 
         analise = analiseRepo.save(analise);
@@ -59,7 +58,6 @@ public class AnaliseCompetenciaService {
         dto.setHardSkillNome(analise.getHardSkill().getNome());
         dto.setQuantidadeDesejada(analise.getQuantidadeColaboradoresDesejada());
         dto.setQuantidadeAtual(analise.getQuantidadeAtual());
-//        dto.setNivelCompetenciaDesejado(analise.getNivelCompetenciaDesejado());
         dto.setStatusAlinhamento(analise.getStatusAlinhamento());
         return dto;
     }

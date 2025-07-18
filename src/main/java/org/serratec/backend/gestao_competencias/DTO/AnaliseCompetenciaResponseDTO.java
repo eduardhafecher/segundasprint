@@ -13,6 +13,5 @@ public class AnaliseCompetenciaResponseDTO {
     private String hardSkillNome;
     private Integer quantidadeDesejada;
     private Integer quantidadeAtual;
-//    private NivelCompetencia nivelCompetenciaDesejado;
     private StatusAlinhamento statusAlinhamento;
 }
